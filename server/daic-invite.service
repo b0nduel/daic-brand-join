@@ -1,0 +1,8 @@
+[Unit]
+Description=DAIC: invite commenters with the code word to b0nduel/daic-brand
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/daic-invite/bot.py
+StateDirectory=daic-invite

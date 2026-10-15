@@ -6,8 +6,8 @@
 
 1. Откройте задачу с меткой **access**: [«Получить доступ к daic-brand»](https://github.com/b0nduel/daic-brand-join/issues?q=is%3Aissue+label%3Aaccess).
 2. Оставьте комментарий с **кодовым словом**. Слово сообщает тот, кто дал вам ссылку.
-   Бот сразу удалит комментарий, чтобы слово не оставалось на виду.
-3. Через минуту на GitHub придёт приглашение. Примите его: https://github.com/b0nduel/daic-brand/invitations
+   Бот в течение минуты удалит комментарий, чтобы слово не оставалось на виду.
+3. В течение 1–2 минут на GitHub придёт приглашение. Примите его: https://github.com/b0nduel/daic-brand/invitations
 4. Готово. У вас есть право создавать свои ветки в `daic-brand`.
 
 ## Как загрузить контекст
@@ -40,3 +40,9 @@ git push -u origin context/<ваш-ник>-<тема>
 >    `gh api -X PATCH user/repository_invitations/<id>`.
 > 3. `gh repo clone b0nduel/daic-brand`, прочитай `README.md`, `CONTRIBUTING.md` и `context/main/BRIEF.md`.
 > 4. Создай ветку `context/<ник>-<тема>`, сохрани итог нашей работы в `context/<ник>-<тема>/CONTEXT.md` по шаблону `context/_template/CONTEXT.md` (плюс полезные файлы), закоммить и запушь эту ветку. `main` не трогай.
+
+## Как это работает
+
+Бот (`server/bot.py`) запускается на сервере владельца раз в минуту через systemd-таймер.
+Он проверяет комментарии в задаче #1. Если в комментарии есть кодовое слово, бот удаляет комментарий,
+приглашает автора в `b0nduel/daic-brand` с правом push и отвечает ссылкой на приглашение.
